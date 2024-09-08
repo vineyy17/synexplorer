@@ -14,16 +14,17 @@ const Dashboard = () => {
       <div className="dashboard__top">
         <p className="dashboard__top__text">Dashboard</p>
         <div className="dashboard__top__right">
+        <Image
+            className="dashboard__top__right__refresh"
+            src={refresh}
+            alt="refresh icon"
+          />
           <Image
             className="dashboard__top__right__grid"
             src={grid}
             alt="grid icon"
           />
-          <Image
-            className="dashboard__top__right__refresh"
-            src={refresh}
-            alt="refresh icon"
-          />
+         
         </div>
       </div>
       <div className="dashboard__marketData">

@@ -114,32 +114,92 @@
     }
   }
 
-  &__rightButton {
-    display: flex;
-    align-items: center;
-    gap: toRem(10);
-    justify-content: center;
-    box-sizing: border-box;
+  // &__rightButton {
+  //   display: flex;
+  //   align-items: center;
+  //   gap: toRem(10);
+  //   justify-content: center;
+  //   box-sizing: border-box;
 
-    padding: toRem(10) toRem(15);
-    border-radius: toRem(10);
-    background-color: rgba(219, 255, 251, 0.1);
+  //   padding: toRem(10) toRem(15);
+  //   border-radius: toRem(10);
+  //   background-color: rgba(219, 255, 251, 0.1);
 
-    outline: none;
-    border: none;
-    cursor: pointer;
+  //   outline: none;
+  //   border: none;
+  //   cursor: pointer;
 
-    &__icon {
-      width: toRem(30);
-      height: toRem(30);
-    }
+  //   &__icon {
+  //     width: toRem(30);
+  //     height: toRem(30);
+  //   }
 
-    &__text {
-      color: #00b8a1;
-      font-size: toRem(18);
-      font-style: normal;
-      font-weight: 500;
-      line-height: toRem(21.78);
-    }
+  //   &__text {
+  //     color: #00b8a1;
+  //     font-size: toRem(18);
+  //     font-style: normal;
+  //     font-weight: 500;
+  //     line-height: toRem(21.78);
+  //   }
+  // }
+}
+
+.css-bhhm7t {
+  border-radius: toRem(10) !important;
+  background-color: #172826 !important;
+  box-sizing: border-box;
+  padding: toRem(10) toRem(21) !important;
+
+  color: #00071a;
+  font-family: var(--font-mada);
+  font-size: toRem(16) !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: toRem(16);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  min-width: fit-content !important;
+  height: fit-content !important;
+  padding-left: toRem(15) !important;
+}
+
+.css-7ez1v2 {
+  border-radius: toRem(10) !important;
+  background-color: #172826 !important;
+  box-sizing: border-box;
+  padding: toRem(10) toRem(21) !important;
+  padding-left: toRem(15) !important;
+
+  color: #00071a;
+  font-family: var(--font-mada);
+  font-size: toRem(16) !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: toRem(16);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  height: fit-content !important;
+}
+
+.css-12dr9gg {
+  border-radius: toRem(10) !important;
+  background-color: #0effdf !important;
+  box-sizing: border-box;
+  padding: toRem(14) toRem(21) !important;
+
+  color: #00071a;
+  font-family: var(--font-mada);
+  font-size: toRem(16) !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: toRem(16);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  min-width: fit-content !important;
+  height: fit-content !important;
+
+  &:hover {
+    background-color: #00c45a !important;
   }
 }
+
