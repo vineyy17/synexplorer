@@ -1,0 +1,145 @@
+@use '/styles/main.scss' as *;
+
+.header {
+  position: relative;
+  padding: toRem(10) toRem(13);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: toRem(10);
+  border: toRem(1) solid #00332c;
+  background: rgba(0, 7, 26, 0.01);
+  backdrop-filter: blur(toRem(15));
+  z-index: 10;
+
+  &--dashboard {
+    border: toRem(1) solid #25272d;
+  }
+
+  &__logo {
+    width: toRem(142.68);
+    height: toRem(25);
+  }
+
+  &__mid {
+    display: flex;
+    align-items: center;
+    gap: toRem(60);
+
+    &__text {
+      color: $col-white;
+      font-family: var(--font-mada);
+      font-size: toRem(16);
+      font-style: normal;
+      font-weight: 400;
+      line-height: toRem(16);
+      cursor: pointer;
+    }
+  }
+
+  &__button {
+    // width: toRem(121);
+    // height: toRem(44);
+    border-radius: toRem(10);
+    background-color: #0effdf;
+    box-sizing: border-box;
+    padding: toRem(14) toRem(21);
+
+    color: #00071a;
+    font-family: var(--font-mada);
+    font-size: toRem(16);
+    font-style: normal;
+    font-weight: 400;
+    line-height: toRem(16);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #00c45a;
+    }
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: toRem(20);
+
+    &__featureButton {
+      display: flex;
+      align-items: center;
+      gap: toRem(10);
+      justify-content: center;
+
+      height: toRem(50);
+      width: toRem(156);
+      border-radius: toRem(10);
+      background-color: #172826;
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      &__text {
+        color: #0effdf;
+        font-size: toRem(16);
+        font-style: normal;
+        font-weight: 400;
+        line-height: toRem(16);
+      }
+
+      &__arrowIcon {
+        width: toRem(24);
+        height: toRem(24);
+      }
+    }
+
+    &__button {
+      border-radius: toRem(10);
+      background-color: #0effdf;
+      box-sizing: border-box;
+      padding: toRem(14) toRem(21);
+
+      color: #00071a;
+      font-family: var(--font-mada);
+      font-size: toRem(16);
+      font-style: normal;
+      font-weight: 400;
+      line-height: toRem(16);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #00c45a;
+      }
+    }
+  }
+
+  &__rightButton {
+    display: flex;
+    align-items: center;
+    gap: toRem(10);
+    justify-content: center;
+    box-sizing: border-box;
+
+    padding: toRem(10) toRem(15);
+    border-radius: toRem(10);
+    background-color: rgba(219, 255, 251, 0.1);
+
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    &__icon {
+      width: toRem(30);
+      height: toRem(30);
+    }
+
+    &__text {
+      color: #00b8a1;
+      font-size: toRem(18);
+      font-style: normal;
+      font-weight: 500;
+      line-height: toRem(21.78);
+    }
+  }
+}

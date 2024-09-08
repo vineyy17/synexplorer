@@ -1,0 +1,23 @@
+@use '/styles/main.scss' as *;
+
+.appLayout__cont {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: hidden;
+  position: relative;
+  background-color: #000;
+  padding: toRem(27) toRem(31);
+  &__gradient {
+    position: absolute;
+    width: toRem(1889);
+    height: toRem(1002);
+    left: toRem(-220);
+
+    border-radius: toRem(1889);
+    background-color: rgba(14, 255, 223, 0.05);
+    box-shadow: toRem(4) toRem(4) toRem(100) toRem(300) rgba(14, 255, 223, 0.15);
+    filter: blur(toRem(150));
+    top: 35%;
+  }
+}

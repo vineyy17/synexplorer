@@ -1,0 +1,80 @@
+@use '/styles/main.scss' as *;
+
+.hero {
+  position: relative;
+  height: 100vh;
+
+  &__box {
+    padding-top: toRem(53);
+    width: toRem(680);
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__top {
+      padding: toRem(7) toRem(9);
+      border-radius: toRem(10);
+      border: toRem(0.5) solid $col-white;
+      background-color: rgba(255, 255, 255, 0.05);
+
+      color: $col-white;
+      font-family: var(--font-mada);
+      font-size: toRem(12);
+      font-style: normal;
+      font-weight: 400;
+      line-height: toRem(16);
+    }
+
+    &__heading {
+      color: $col-white;
+      text-align: center;
+      font-size: toRem(58);
+      font-style: normal;
+      font-weight: 700;
+      line-height: toRem(64);
+      padding-top: toRem(11);
+    }
+
+    &__para {
+      color: #bababa;
+      text-align: center;
+      font-size: toRem(18);
+      font-style: normal;
+      font-weight: 400;
+      line-height: toRem(25);
+      width: toRem(442);
+      padding-top: toRem(11);
+    }
+  }
+
+  &__bottom__active {
+    padding: toRem(7) toRem(9);
+    border-radius: toRem(10);
+    border: toRem(1) solid #00c45a;
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    width: toRem(168);
+    height: toRem(30);
+    box-sizing: border-box;
+    position: absolute;
+    bottom: toRem(10);
+    z-index: 10;
+
+    &__icon {
+      width: toRem(12);
+      height: toRem(12);
+    }
+
+    &__text {
+      color: #00c45a;
+      font-size: toRem(12);
+      font-style: normal;
+      font-weight: 400;
+      line-height: toRem(16);
+    }
+  }
+}
