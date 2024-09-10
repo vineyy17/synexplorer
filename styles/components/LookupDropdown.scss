@@ -1,0 +1,28 @@
+@use "/styles/main.scss" as *;
+
+.lookupDropdown {
+  border-radius: toRem(10);
+  border: toRem(1) solid #25272d;
+  padding: toRem(10) toRem(17);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: toRem(10);
+  background-color: transparent;
+  outline: none;
+
+  &__text {
+    color: #5b5b5b;
+    font-size: toRem(16);
+    font-style: normal;
+    font-weight: 400;
+    line-height: toRem(16);
+  }
+
+  &__arrow {
+    width: toRem(24);
+    height: toRem(24);
+  }
+}
