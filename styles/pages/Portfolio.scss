@@ -1,0 +1,100 @@
+@use "/styles/main.scss" as *;
+
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: hidden;
+  position: relative;
+  background-color: #000;
+  padding: toRem(27) toRem(31);
+
+  &__top {
+    display: flex;
+    padding-top: toRem(56);
+
+    &__text {
+      color: #00b8a1;
+      font-size: toRem(20);
+      font-style: normal;
+      font-weight: 400;
+      line-height: toRem(16);
+    }
+  }
+
+  &__cont {
+    min-height: toRem(652);
+    width: 100%;
+    border-radius: toRem(10);
+    border: toRem(1) solid #25272d;
+    padding-top: toRem(34);
+    padding-left: toRem(37);
+    padding-right: toRem(37);
+    padding-bottom: toRem(30);
+    margin-top: toRem(34);
+
+    &__heading {
+      color: #fff;
+      font-size: toRem(24);
+      font-style: normal;
+      font-weight: 600;
+      line-height: toRem(16);
+      text-align: left;
+    }
+
+    &__tab {
+      margin-top: toRem(30);
+      height: fit-content;
+      width: toRem(231);
+      display: flex;
+      align-items: center;
+      background-color: #000d00;
+      width: fit-content;
+      border-radius: toRem(10);
+      border: toRem(1) solid #25272d;
+      padding: toRem(10) toRem(6);
+      position: relative;
+      overflow: hidden;
+      gap: toRem(0);
+
+      &__slider {
+        position: absolute;
+        top: 0.4rem;
+        left: 0.4rem;
+        height: calc(100% - 0.8rem);
+        width: toRem(113);
+        background-color: #172826;
+        border-radius: toRem(10);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      &__personal,
+      &__protocol-wide {
+        font-size: toRem(16);
+        cursor: pointer;
+        padding: toRem(10) !important;
+        border-radius: toRem(10);
+        line-height: toRem(16);
+        width: toRem(113) !important;
+        font-weight: 400;
+        text-align: center;
+        transition: color 0.3s ease-in;
+        position: relative;
+        z-index: 1;
+        color: #0effdf;
+      }
+
+      &__personal.active,
+      &__protocol-wide.active {
+        background-color: transparent;
+        color: #0effdf;
+      }
+
+      &.protocol-wide-active {
+        .portfolio__cont__tab__slider {
+          transform: translateX(calc(100% + 0rem));
+        }
+      }
+    }
+  }
+}
