@@ -69,7 +69,9 @@
       }
 
       &__personal,
-      &__protocol-wide {
+      &__protocol-wide,
+      &__liquidity-pool,
+      &__futures {
         font-size: toRem(16);
         cursor: pointer;
         padding: toRem(10) !important;
@@ -85,7 +87,9 @@
       }
 
       &__personal.active,
-      &__protocol-wide.active {
+      &__protocol-wide.active,
+      &__liquidity-pool.active,
+      &__futures.active {
         background-color: transparent;
         color: #0effdf;
       }
@@ -93,6 +97,185 @@
       &.protocol-wide-active {
         .portfolio__cont__tab__slider {
           transform: translateX(calc(100% + 0rem));
+        }
+      }
+
+      &.futures-active {
+        .portfolio__cont__tab__slider {
+          transform: translateX(calc(100% + 0rem));
+        }
+      }
+    }
+
+    &__lgWrapper {
+      margin-top: toRem(48);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &__left {
+        min-width: 24%;
+        min-height: toRem(153);
+        border-radius: toRem(10);
+        border: toRem(1) solid #25272d;
+        padding: toRem(15) toRem(32);
+
+        &__heading {
+          color: #ffffff;
+          font-size: toRem(18);
+          font-style: normal;
+          font-weight: 600;
+          line-height: toRem(18);
+        }
+
+        &__wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: toRem(20);
+
+          &__left {
+            display: flex;
+            flex-direction: column;
+            gap: toRem(8);
+
+            &__heading {
+              color: #ffffff;
+              font-size: toRem(36);
+              font-style: normal;
+              font-weight: 600;
+              line-height: toRem(36);
+            }
+
+            &__sub {
+              color: #bababa;
+              font-size: toRem(14);
+              font-style: normal;
+              font-weight: 400;
+              line-height: toRem(16);
+            }
+          }
+        }
+      }
+
+      &__right {
+        min-width: 75.2%;
+        min-height: toRem(153);
+        border-radius: toRem(10);
+        border: toRem(1) solid #25272d;
+        padding: toRem(15) toRem(32);
+
+        &__top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          &__heading {
+            color: #ffffff;
+            font-size: toRem(18);
+            font-style: normal;
+            font-weight: 600;
+            line-height: toRem(18);
+          }
+
+          &__readOnly {
+            box-sizing: border-box;
+            width: toRem(62);
+            height: toRem(26);
+            border-radius: toRem(100);
+            text-align: center;
+            background-color: #007566;
+            padding: toRem(4) toRem(8);
+
+            color: #ffffff;
+            font-size: toRem(11);
+            font-style: normal;
+            font-weight: 400;
+            line-height: toRem(18);
+          }
+        }
+      }
+    }
+
+    &__smWrapper {
+      margin-top: toRem(17);
+      display: flex;
+      align-items: center;
+      gap: toRem(11);
+
+      &__left {
+        min-width: toRem(174);
+        min-height: toRem(114);
+        border-radius: toRem(10);
+        border: toRem(1) solid #25272d;
+        padding: toRem(15) toRem(26);
+
+        &__heading {
+          color: #ffffff;
+          font-size: toRem(18);
+          font-style: normal;
+          font-weight: 600;
+          line-height: toRem(18);
+        }
+
+        &__wrapper {
+          &__left {
+            margin-top: toRem(12);
+
+            &__heading {
+              color: #ffffff;
+              font-size: toRem(36);
+              font-style: normal;
+              font-weight: 600;
+              line-height: toRem(36);
+            }
+
+            &__sub {
+              color: #bababa;
+              font-size: toRem(14);
+              font-style: normal;
+              font-weight: 400;
+              line-height: toRem(16);
+            }
+          }
+        }
+      }
+
+      &__right {
+        min-width: toRem(174);
+        min-height: toRem(114);
+        border-radius: toRem(10);
+        border: toRem(1) solid #25272d;
+        padding: toRem(15) toRem(26);
+
+        &__heading {
+          color: #ffffff;
+          font-size: toRem(18);
+          font-style: normal;
+          font-weight: 600;
+          line-height: toRem(18);
+        }
+
+        &__wrapper {
+          &__left {
+            margin-top: toRem(12);
+
+            &__heading {
+              color: #ffffff;
+              font-size: toRem(36);
+              font-style: normal;
+              font-weight: 600;
+              line-height: toRem(36);
+            }
+
+            &__sub {
+              color: #bababa;
+              font-size: toRem(14);
+              font-style: normal;
+              font-weight: 400;
+              line-height: toRem(16);
+            }
+          }
         }
       }
     }
