@@ -73,22 +73,26 @@ const Header = ({ type }: HeaderProps) => {
       )}
 
       {type === "dashboard" && (
-        <div className="header header--dashboard">
-          <div className="header__left">
-            <button className="header__left__featureButton">
-              <p className="header__left__featureButton__text">Synfutures Q2</p>
-              <Image
-                src={arrow}
-                className="header__left__featureButton__arrowIcon"
-                alt="arrow down"
-              />
-            </button>
-            <button className="header__left__button">Share</button>
-          </div>
-          <Link href="/">
-            <Image src={logo} className="header__logo" alt="logo" />
-          </Link>
-          {/* <button className="header__rightButton">
+        <>
+          <div className="header__placeholder" />
+          <div className="header header--dashboard">
+            <div className="header__left">
+              <button className="header__left__featureButton">
+                <p className="header__left__featureButton__text">
+                  Synfutures Q2
+                </p>
+                <Image
+                  src={arrow}
+                  className="header__left__featureButton__arrowIcon"
+                  alt="arrow down"
+                />
+              </button>
+              <button className="header__left__button">Share</button>
+            </div>
+            <Link href="/">
+              <Image src={logo} className="header__logo" alt="logo" />
+            </Link>
+            {/* <button className="header__rightButton">
             <Image
               src={walletSvg}
               className="header__rightButton__icon"
@@ -97,29 +101,30 @@ const Header = ({ type }: HeaderProps) => {
             <p className="header__rightButton__text">0x765a...34cD</p>
           </button> */}
 
-          <ConnectButton
-            client={client}
-            wallets={wallets}
-            theme={darkTheme({
-              colors: {
-                modalBg: "#172826",
-                accentText: "#ffffff",
-                primaryText: "#ffffff",
-                primaryButtonBg: "#0effdf",
-                primaryButtonText: "#00071A",
-                borderColor: "#00332c",
-                separatorLine: "#00332c",
-                connectedButtonBg: "#172826",
-                connectedButtonBgHover: "#172826",
-                tertiaryBg: "#00332c",
-                secondaryIconHoverBg: "#00332c",
-              },
-              fontFamily: "var(--font-mada)",
-            })}
-            connectButton={{ label: "Launch app" }}
-            connectModal={{ size: "compact" }}
-          />
-        </div>
+            <ConnectButton
+              client={client}
+              wallets={wallets}
+              theme={darkTheme({
+                colors: {
+                  modalBg: "#172826",
+                  accentText: "#ffffff",
+                  primaryText: "#ffffff",
+                  primaryButtonBg: "#0effdf",
+                  primaryButtonText: "#00071A",
+                  borderColor: "#00332c",
+                  separatorLine: "#00332c",
+                  connectedButtonBg: "#172826",
+                  connectedButtonBgHover: "#172826",
+                  tertiaryBg: "#00332c",
+                  secondaryIconHoverBg: "#00332c",
+                },
+                fontFamily: "var(--font-mada)",
+              })}
+              connectButton={{ label: "Launch app" }}
+              connectModal={{ size: "compact" }}
+            />
+          </div>
+        </>
       )}
     </>
   );

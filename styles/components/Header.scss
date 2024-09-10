@@ -1,4 +1,9 @@
-@use '/styles/main.scss' as *;
+@use "/styles/main.scss" as *;
+
+.header__placeholder {
+  height: toRem(70);
+  z-index: 10;
+}
 
 .header {
   position: relative;
@@ -11,10 +16,12 @@
   border: toRem(1) solid #00332c;
   background: rgba(0, 7, 26, 0.01);
   backdrop-filter: blur(toRem(15));
-  z-index: 10;
+  z-index: 20;
 
   &--dashboard {
     border: toRem(1) solid #25272d;
+    width: 95.7%;
+    position: fixed;
   }
 
   &__logo {
@@ -202,4 +209,3 @@
     background-color: #00c45a !important;
   }
 }
-
