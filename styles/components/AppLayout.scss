@@ -8,6 +8,8 @@
   position: relative;
   background-color: #000;
   padding: toRem(27) toRem(31);
+  overflow-x: hidden;
+ 
 
   &__gradient {
     position: absolute;
