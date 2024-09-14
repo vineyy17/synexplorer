@@ -1,7 +1,8 @@
-import React from 'react';
-import '../styles/components/Hero.scss';
-import active from '../assets/svgs/active.svg';
-import Image from 'next/image';
+import React from "react";
+import "../styles/components/Hero.scss";
+import active from "../assets/svgs/active.svg";
+import Image from "next/image";
+import heroImage from "../assets/images/hero.webp";
 
 const Hero = () => {
   return (
@@ -27,6 +28,8 @@ const Hero = () => {
         />
         <p className="hero__bottom__active__text">All systems are functional</p>
       </div>
+
+      <div className="hero__image" />
     </div>
   );
 };

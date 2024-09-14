@@ -1,4 +1,4 @@
-@use '/styles/main.scss' as *;
+@use "/styles/main.scss" as *;
 
 .hero {
   position: relative;
@@ -61,7 +61,7 @@
     height: toRem(30);
     box-sizing: border-box;
     position: absolute;
-    bottom: toRem(10);
+    bottom: toRem(31);
     z-index: 10;
 
     &__icon {
@@ -76,5 +76,17 @@
       font-weight: 400;
       line-height: toRem(16);
     }
+  }
+
+  &__image {
+    width: toRem(1048);
+    height: 50%;
+    position: absolute;
+    background-image: url("../../assets/images/hero.webp");
+    background-size: cover;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
   }
 }

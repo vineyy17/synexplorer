@@ -1,4 +1,4 @@
-@use '/styles/main.scss' as *;
+@use "/styles/main.scss" as *;
 
 .appLayout__cont {
   display: flex;
@@ -8,8 +8,8 @@
   position: relative;
   background-color: #000;
   padding: toRem(27) toRem(31);
+  padding-bottom: 0;
   overflow-x: hidden;
- 
 
   &__gradient {
     position: absolute;
