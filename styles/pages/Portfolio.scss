@@ -197,6 +197,81 @@
       }
     }
 
+    &__tableWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(14);
+      margin-top: toRem(26);
+
+      &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__heading {
+          color: #ffffff;
+          font-size: toRem(18);
+          font-style: normal;
+          font-weight: 500;
+          line-height: toRem(16);
+        }
+
+        &__right {
+          display: flex;
+          align-items: center;
+          gap: toRem(49);
+
+          &__refresh {
+            display: flex;
+            align-items: center;
+            gap: toRem(9);
+
+            &__text {
+              color: #0effdf;
+              font-size: toRem(18);
+              font-style: normal;
+              font-weight: 600;
+              line-height: toRem(16);
+              text-decoration: underline;
+              cursor: pointer;
+            }
+
+            &__icon {
+              width: toRem(24);
+              height: toRem(24);
+              cursor: pointer;
+            }
+          }
+
+          &__timeframe {
+            display: flex;
+            align-items: center;
+            gap: toRem(15);
+
+            padding: toRem(10) toRem(17);
+            border: toRem(1) solid #25272d;
+            background-color: #000d00;
+            border-radius: toRem(10);
+            cursor: pointer;
+
+            &__text {
+              color: #ffffff;
+              font-size: toRem(16);
+              font-style: normal;
+              font-weight: 400;
+              line-height: toRem(16);
+              text-transform: uppercase;
+            }
+
+            &__arrow {
+              width: toRem(24);
+              height: toRem(24);
+            }
+          }
+        }
+      }
+    }
+
     &__smWrapper {
       margin-top: toRem(17);
       display: flex;
