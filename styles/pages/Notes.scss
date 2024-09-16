@@ -44,6 +44,81 @@
 
       border-radius: toRem(10);
       border: toRem(1) solid #25272d;
+
+      padding: toRem(10) toRem(10);
+
+      &__button {
+        box-sizing: border-box;
+        padding: toRem(14) toRem(21);
+        border-radius: toRem(10);
+        background: #0effdf;
+        outline: none;
+        cursor: pointer;
+
+        color: #00071a;
+        font-size: toRem(16);
+        font-style: normal;
+        font-weight: 400;
+        line-height: toRem(16);
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background-color: #00c45a;
+        }
+      }
+
+      &__stack {
+        display: flex;
+        flex-direction: column;
+        gap: toRem(9);
+        align-items: center;
+        margin-top: toRem(21);
+
+        &__note {
+          box-sizing: border-box;
+          padding-top: toRem(17);
+          padding-left: toRem(21);
+          padding-right: toRem(13);
+          padding-bottom: toRem(15);
+          cursor: pointer;
+
+          display: flex;
+          flex-direction: column;
+          gap: toRem(5);
+
+          border-radius: toRem(10);
+          background-color: #172826;
+          width: 100%;
+
+          &__top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &__text {
+              color: #ffffff;
+              font-size: toRem(20);
+              font-style: normal;
+              font-weight: 600;
+              line-height: toRem(18);
+            }
+
+            &__icon {
+              width: toRem(24);
+              height: toRem(24);
+              cursor: pointer;
+            }
+          }
+
+          &__details {
+            color: #007566;
+            font-size: toRem(14);
+            font-style: normal;
+            font-weight: 400;
+            line-height: toRem(16);
+          }
+        }
+      }
     }
 
     &__right {
