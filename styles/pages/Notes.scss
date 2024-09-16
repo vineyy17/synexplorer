@@ -1,0 +1,57 @@
+@use "/styles/main.scss" as *;
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: hidden;
+  position: relative;
+  background-color: #000;
+  padding: toRem(27) toRem(31);
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+    margin-top: toRem(43);
+
+    &__notes {
+      color: #00b8a1;
+      font-size: toRem(20);
+      font-style: normal;
+      font-weight: 400;
+      line-height: toRem(16);
+    }
+
+    &__heading {
+      color: #ffffff;
+      font-size: toRem(48);
+      font-style: normal;
+      font-weight: 600;
+      line-height: toRem(48);
+    }
+  }
+
+  &__wrapper {
+    margin-top: toRem(21);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__left {
+      min-height: toRem(1549);
+      width: 19.25%;
+
+      border-radius: toRem(10);
+      border: toRem(1) solid #25272d;
+    }
+
+    &__right {
+      min-height: toRem(1549);
+      width: 80.25%;
+
+      border-radius: toRem(10);
+      border: toRem(1) solid #25272d;
+    }
+  }
+}
