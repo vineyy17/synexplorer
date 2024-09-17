@@ -3,6 +3,8 @@
 .hero {
   position: relative;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   &__box {
     padding-top: toRem(53);
@@ -80,10 +82,11 @@
 
   &__image {
     width: toRem(1048);
-    height: 50%;
-    position: absolute;
+    flex-grow: 1;
     background-image: url("../../assets/images/hero.webp");
     background-size: cover;
+    background-position: top;
+    position: relative;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
