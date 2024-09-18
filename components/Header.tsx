@@ -67,7 +67,11 @@ const Header = ({ type }: HeaderProps) => {
               fontFamily: "var(--font-mada)",
             })}
             connectButton={{ label: "Launch app" }}
-            connectModal={{ size: "compact", title: "Connect wallet" }}
+            connectModal={{
+              size: "compact",
+              title: "Connect wallet",
+              showThirdwebBranding: false,
+            }}
           />
         </div>
       )}
