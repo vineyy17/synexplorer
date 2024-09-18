@@ -1,9 +1,16 @@
+"use client";
+
 import React from "react";
 import "../../../styles/pages/Notes.scss";
 import Header from "../../../components/Header";
 import TabNavigation from "../../../components/TabNavigation";
 import pencil from "../../../assets/svgs/edit-2.svg";
 import Image from "next/image";
+import NoteEditor from "../../../components/NoteEditor";
+
+const handleSaveNote = (content: string) => {
+  console.log("content", content);
+};
 
 const Notes = () => {
   return (
@@ -54,7 +61,9 @@ const Notes = () => {
             </div>
           </div>
         </div>
-        <div className="notes__wrapper__right" />
+        {/* <div className="notes__wrapper__right"> */}
+        <NoteEditor />
+        {/* </div> */}
       </div>
       <TabNavigation />
     </div>

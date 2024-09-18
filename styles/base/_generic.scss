@@ -6,25 +6,25 @@ span.word_wrap {
   display: inline-block;
   line-height: 1.6rem;
 }
-[data-animation='h'] span.word {
+[data-animation="h"] span.word {
   overflow-y: hidden;
   position: relative;
 }
-[data-animation='custom'] span.word {
+[data-animation="custom"] span.word {
   overflow-y: hidden;
   position: relative;
 }
-[data-animation='hCustom'] span.word {
+[data-animation="hCustom"] span.word {
   overflow-y: hidden;
   position: relative;
 }
 
-[data-animation='opacIn'] span.word {
+[data-animation="opacIn"] span.word {
   position: relative;
   overflow: auto !important;
 }
 .y__link {
-  [data-animation='h'] .char:after {
+  [data-animation="h"] .char:after {
     visibility: visible;
     top: 100%;
     left: 0;
@@ -33,22 +33,22 @@ span.word_wrap {
 .child_wrap {
   margin: 0 auto;
   width: 85%;
-  @include media('<=tablet') {
+  @include media("<=tablet") {
     width: 90%;
   }
 }
 .rm-tab {
-  @include media('<=tablet') {
+  @include media("<=tablet") {
     display: none;
   }
 }
 .rm-mobile {
-  @include media('<=phone-tab') {
+  @include media("<=phone-tab") {
     display: none;
   }
 }
 .full-width-tab {
-  @include media('<=phone-tab') {
+  @include media("<=phone-tab") {
     width: 100%;
     max-width: 100%;
   }
@@ -80,5 +80,5 @@ span.word_wrap {
   background: rgba(14, 255, 223, 0.05);
 }
 ::selection {
-  background-color: rgba(14, 255, 223, 0.05);
+  background-color: #172826;
 }

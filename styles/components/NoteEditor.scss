@@ -1,0 +1,151 @@
+@use "/styles/main.scss" as *;
+
+.noteEditor {
+  min-height: toRem(1549);
+  width: 80.25%;
+
+  border-radius: toRem(10);
+  border: toRem(1) solid #25272d;
+  padding: toRem(14);
+
+  &__toolbar {
+    height: toRem(61);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__flexFirst {
+      @include flex(flex-start, center, toRem(30));
+    }
+
+    &__flexFormat {
+      box-sizing: border-box;
+      width: toRem(511);
+      height: toRem(61);
+      border-radius: toRem(10);
+      background-color: #031a0d;
+      box-shadow: toRem(3) toRem(3) toRem(40) toRem(10) #25272d26;
+      padding: toRem(12.5) toRem(24);
+      //   margin-left: toRem(88);
+      //   margin-right: toRem(48);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &__button {
+        width: toRem(44);
+        height: toRem(44);
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+        border-radius: toRem(7);
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background-color: #007566 !important;
+
+          p {
+            color: #0effdf !important;
+          }
+
+          svg {
+            path {
+              stroke: #0effdf !important;
+            }
+          }
+        }
+
+        //   svg {
+        //     width: toRem(28);
+        //     height: toRem(28);
+        //     stroke: #007566;
+        //   }
+
+        &__text {
+          font-family: var(--font-inter);
+          font-size: toRem(30);
+          font-weight: 400;
+          line-height: toRem(36.31);
+
+          span {
+            font-family: var(--font-inter);
+            font-size: toRem(16);
+            font-weight: 400;
+            line-height: toRem(19.36);
+          }
+        }
+
+        svg {
+          width: toRem(24);
+          height: toRem(24);
+        }
+      }
+    }
+
+    &__button {
+      width: toRem(44);
+      height: toRem(44);
+      background-color: #172826;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      border-radius: toRem(7);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #007566;
+
+        svg {
+          fill: #0effdf;
+        }
+      }
+
+      svg {
+        width: toRem(28);
+        height: toRem(28);
+        fill: #007566;
+      }
+
+      &--stroke {
+        &:hover {
+          svg {
+            stroke: #0effdf;
+            fill: none;
+          }
+        }
+
+        svg {
+          stroke: #007566;
+          fill: none;
+        }
+      }
+
+      //   &--share {
+      //     margin-right: toRem(48);
+      //   }
+
+      //   &--undo {
+      //     margin-right: toRem(39);
+      //   }
+    }
+  }
+
+  &__editor {
+    padding-top: toRem(56);
+    padding-left: toRem(91);
+    padding-right: toRem(30);
+    padding-bottom: toRem(56);
+    color: #ffffff;
+    min-height: 100%;
+    min-width: 100%;
+    overflow-y: "auto";
+    outline: none;
+    border: none;
+  }
+}
