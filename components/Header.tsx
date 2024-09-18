@@ -40,7 +40,6 @@ const Header = ({ type }: HeaderProps) => {
             <Link href="/dashboard">
               <p className="header__mid__text">Dashboard</p>
             </Link>
-            <p className="header__mid__text">Compare</p>
             <p className="header__mid__text">Lookup</p>
             <p className="header__mid__text">Protocol</p>
           </div>
