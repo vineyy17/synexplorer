@@ -40,6 +40,7 @@
 
     &__left {
       min-height: toRem(1549);
+      overflow-y: scroll;
       width: 19.25%;
 
       border-radius: toRem(10);
@@ -89,6 +90,10 @@
           border-radius: toRem(10);
           background-color: #172826;
           width: 100%;
+
+          &--active {
+            border: toRem(1) solid #0effdf;
+          }
 
           &__top {
             display: flex;

@@ -1,12 +1,20 @@
 import React, { useRef, useState, useEffect } from "react";
 import "../styles/components/NoteEditor.scss";
 import "../styles/pages/Notes.scss";
-import Image from "next/image";
-import pencil from "../assets/svgs/edit-2.svg";
+import NoteSidebarContent from "./NoteSidebarContent";
+import toast from "react-hot-toast";
+
+interface Note {
+  id: string;
+  content: string;
+  createdAt: number;
+}
 
 const NoteEditor: React.FC = () => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [content, setContent] = useState<string>("");
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [activeNoteId, setActiveNoteId] = useState<string | null>(null);
   const [activeFormats, setActiveFormats] = useState({
     bold: false,
     italic: false,
@@ -17,30 +25,73 @@ const NoteEditor: React.FC = () => {
   });
 
   // Load content from localStorage when the component mounts
-  //   useEffect(() => {
-  //     const savedContent = localStorage.getItem("editorContent");
-  //     if (savedContent) {
-  //       setContent(savedContent);
-  //       if (editorRef.current) {
-  //         editorRef.current.innerHTML = savedContent;
-  //       }
-  //     }
-  //   }, []);
+  useEffect(() => {
+    const savedNotes = JSON.parse(localStorage.getItem("notes") || "[]");
+    setNotes(savedNotes);
+    if (savedNotes.length > 0) {
+      setActiveNoteId(savedNotes[0].id);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (activeNoteId && editorRef.current) {
+      const activeNote = notes.find((note) => note.id === activeNoteId);
+      editorRef.current.innerHTML = activeNote?.content || "";
+    }
+  }, [activeNoteId, notes]);
 
   // Save content to localStorage when content changes
-  //   const saveContent = () => {
-  //     if (editorRef.current) {
-  //       const content = editorRef.current.innerHTML;
-  //       setContent(content);
-  //       localStorage.setItem("editorContent", content);
-  //     }
-  //   };
+  const saveNote = () => {
+    if (editorRef.current) {
+      const content = editorRef.current.innerHTML.trim();
+      if (!content) {
+        toast.error("Cannot save an empty note");
+        return;
+      }
+
+      const updatedNotes = activeNoteId
+        ? notes.map((note) =>
+            note.id === activeNoteId
+              ? { ...note, content, createdAt: Date.now() }
+              : note
+          )
+        : [
+            { id: Date.now().toString(), content, createdAt: Date.now() },
+            ...notes,
+          ];
+
+      setNotes(updatedNotes);
+      localStorage.setItem("notes", JSON.stringify(updatedNotes));
+      setActiveNoteId(updatedNotes[0].id);
+      toast.success("Note saved successfully");
+    }
+  };
+
+  const createNewNote = () => {
+    const newNote = {
+      id: Date.now().toString(),
+      content: "",
+      createdAt: Date.now(),
+    };
+    setNotes([newNote, ...notes]);
+    setActiveNoteId(newNote.id);
+    if (editorRef.current) {
+      editorRef.current.innerHTML = "";
+    }
+  };
+
+  const changeActiveNote = (direction: "prev" | "next") => {
+    const currentIndex = notes.findIndex((note) => note.id === activeNoteId);
+    const newIndex = direction === "prev" ? currentIndex - 1 : currentIndex + 1;
+    if (newIndex >= 0 && newIndex < notes.length) {
+      setActiveNoteId(notes[newIndex].id);
+    }
+  };
 
   // Handle formatting actions (bold, italic, underline, headings)
   const formatText = (command: string, value: string | undefined = "") => {
     document.execCommand(command, false, value);
-    // saveContent(); // Save the content whenever a format action is executed
-    checkActiveFormats(); // Update active button styles
+    checkActiveFormats();
   };
 
   // Check and update active formatting buttons
@@ -74,60 +125,24 @@ const NoteEditor: React.FC = () => {
 
   return (
     <div className="notes__wrapper">
-      <div className="notes__wrapper__left">
-        <button className="notes__wrapper__left__button">
-          Make a new note
-        </button>
-        <div className="notes__wrapper__left__stack">
-          <div className="notes__wrapper__left__stack__note">
-            <div className="notes__wrapper__left__stack__note__top">
-              <p className="notes__wrapper__left__stack__note__top__text">
-                wstETH/ETH
-              </p>
-
-              <svg
-                className="notes__wrapper__left__stack__note__top__icon"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.2594 3.6L5.04936 12.29C4.73936 12.62 4.43936 13.27 4.37936 13.72L4.00936 16.96C3.87936 18.13 4.71936 18.93 5.87936 18.73L9.09936 18.18C9.54936 18.1 10.1794 17.77 10.4894 17.43L18.6994 8.74C20.1194 7.24 20.7594 5.53 18.5494 3.44C16.3494 1.37 14.6794 2.1 13.2594 3.6Z"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M11.8906 5.05C12.3206 7.81 14.5606 9.92 17.3406 10.2"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M3 22H21"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
-            <p className="notes__wrapper__left__stack__note__details">
-              What this basically entails is...
-            </p>
-          </div>
-        </div>
-      </div>
+      <NoteSidebarContent
+        notes={notes}
+        activeNoteId={activeNoteId}
+        onSelectNote={setActiveNoteId}
+        onCreateNewNote={createNewNote}
+      />
 
       <div className="noteEditor">
         {/* Toolbar for text formatting */}
         <div className="noteEditor__toolbar">
           <div className="noteEditor__toolbar__flexFirst">
-            <button onClick={() => {}} className="noteEditor__toolbar__button">
+            <button
+              className="noteEditor__toolbar__button"
+              onClick={() => changeActiveNote("prev")}
+              disabled={
+                notes.indexOf(notes.find((n) => n.id === activeNoteId)!) === 0
+              }
+            >
               <svg
                 className="noteEditor__toolbar__button__icon"
                 width="28"
@@ -142,7 +157,14 @@ const NoteEditor: React.FC = () => {
                 />
               </svg>
             </button>
-            <button onClick={() => {}} className="noteEditor__toolbar__button">
+            <button
+              className="noteEditor__toolbar__button"
+              onClick={() => changeActiveNote("next")}
+              disabled={
+                notes.indexOf(notes.find((n) => n.id === activeNoteId)!) ===
+                notes.length - 1
+              }
+            >
               <svg
                 className="noteEditor__toolbar__button__icon"
                 width="28"
@@ -364,7 +386,7 @@ const NoteEditor: React.FC = () => {
           </div>
 
           <button
-            onClick={() => {}}
+            onClick={saveNote}
             className="noteEditor__toolbar__button noteEditor__toolbar__button--check"
           >
             <svg
