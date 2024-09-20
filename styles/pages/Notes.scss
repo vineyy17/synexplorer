@@ -107,6 +107,17 @@
               width: toRem(24);
               height: toRem(24);
               cursor: pointer;
+              transition: all 0.3s ease-in-out;
+
+              path {
+                stroke: #007566;
+              }
+
+              &:hover {
+                path {
+                  stroke: #0effdf;
+                }
+              }
             }
           }
 
