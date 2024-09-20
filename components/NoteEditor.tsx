@@ -50,8 +50,9 @@ const NoteEditor: React.FC = () => {
     const selection = window.getSelection();
     if (selection && selection.rangeCount > 0) {
       const parentElement = selection.anchorNode?.parentElement;
+      const isHeading = parentElement?.closest("h1, h2, h3") !== null;
       setActiveFormats({
-        bold: document.queryCommandState("bold"),
+        bold: !isHeading && document.queryCommandState("bold"),
         italic: document.queryCommandState("italic"),
         underline: document.queryCommandState("underline"),
         h1: parentElement?.closest("h1") !== null,
@@ -337,7 +338,8 @@ const NoteEditor: React.FC = () => {
         contentEditable={true}
         suppressContentEditableWarning={true}
         // onInput={saveContent} // Save the content on input (typing)
-        onKeyUp={checkActiveFormats} // Check active formats when typing or clicking
+        onKeyUp={checkActiveFormats}
+        onMouseUp={checkActiveFormats}
         className="noteEditor__editor"
       />
     </div>
