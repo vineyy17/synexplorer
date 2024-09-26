@@ -3,6 +3,7 @@
 .noteEditor {
   min-height: toRem(1549);
   width: 80.25%;
+  position: relative;
 
   border-radius: toRem(10);
   border: toRem(1) solid #25272d;
@@ -14,14 +15,47 @@
     align-items: center;
     justify-content: space-between;
 
+    &__popover {
+      box-sizing: border-box;
+      width: toRem(118);
+      height: toRem(37);
+      background-color: #ffffff;
+      border-radius: toRem(3);
+      position: relative;
+      top: toRem(0);
+      right: toRem(46);
+      z-index: 100;
+      padding: toRem(6) toRem(7);
+      @include flex(center, center, toRem(2));
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+
+      &__icon {
+        width: toRem(24);
+        height: toRem(24);
+      }
+
+      &__text {
+        font-family: var(--font-inter);
+        font-size: toRem(16);
+        font-weight: 500;
+        line-height: toRem(19.36);
+        color: #fe3a3a;
+      }
+    }
+
     &__flexFirst {
-      @include flex(flex-start, center, toRem(30));
+      @include flex(flex-start, center, toRem(33));
     }
 
     &__flexFormat {
       box-sizing: border-box;
-      width: toRem(511);
-      height: toRem(61);
+      width: toRem(461);
+      height: toRem(40);
       border-radius: toRem(10);
       background-color: #031a0d;
       box-shadow: toRem(3) toRem(3) toRem(40) toRem(10) #25272d26;
@@ -34,8 +68,8 @@
       justify-content: space-between;
 
       &__button {
-        width: toRem(44);
-        height: toRem(44);
+        width: toRem(32);
+        height: toRem(32);
         background-color: transparent;
         display: flex;
         align-items: center;
@@ -67,28 +101,28 @@
 
         &__text {
           font-family: var(--font-inter);
-          font-size: toRem(30);
+          font-size: toRem(20);
           font-weight: 400;
           line-height: toRem(36.31);
 
           span {
             font-family: var(--font-inter);
-            font-size: toRem(16);
+            font-size: toRem(12);
             font-weight: 400;
             line-height: toRem(19.36);
           }
         }
 
         svg {
-          width: toRem(24);
-          height: toRem(24);
+          width: toRem(18);
+          height: toRem(18);
         }
       }
     }
 
     &__button {
-      width: toRem(44);
-      height: toRem(44);
+      width: toRem(40);
+      height: toRem(40);
       background-color: #172826;
       display: flex;
       align-items: center;
@@ -97,6 +131,22 @@
       border-radius: toRem(7);
       cursor: pointer;
       transition: all 0.3s ease-in-out;
+
+      &--share {
+        background-color: transparent;
+      }
+
+      &--undo {
+        background-color: transparent;
+      }
+
+      &--redo {
+        background-color: transparent;
+      }
+
+      &--check {
+        background-color: transparent;
+      }
 
       &:hover {
         background-color: #007566;
@@ -107,8 +157,8 @@
       }
 
       svg {
-        width: toRem(28);
-        height: toRem(28);
+        width: toRem(24);
+        height: toRem(24);
         fill: #007566;
       }
 
@@ -126,13 +176,21 @@
         }
       }
 
-      //   &--share {
-      //     margin-right: toRem(48);
-      //   }
+      &--more {
+        background-color: transparent;
 
-      //   &--undo {
-      //     margin-right: toRem(39);
-      //   }
+        svg {
+          fill: none;
+          stroke: #007566;
+        }
+
+        &:hover {
+          svg {
+            stroke: #0effdf !important;
+            fill: none;
+          }
+        }
+      }
     }
   }
 

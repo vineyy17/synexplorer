@@ -3,6 +3,8 @@ import "../styles/components/NoteEditor.scss";
 import "../styles/pages/Notes.scss";
 import NoteSidebarContent from "./NoteSidebarContent";
 import toast from "react-hot-toast";
+import { Popover } from "@radix-ui/themes";
+import trash from "../assets/svgs/delete.svg";
 
 interface Note {
   id: string;
@@ -49,20 +51,36 @@ const NoteEditor: React.FC = () => {
         return;
       }
 
-      const updatedNotes = activeNoteId
-        ? notes.map((note) =>
-            note.id === activeNoteId
-              ? { ...note, content, createdAt: Date.now() }
-              : note
-          )
-        : [
-            { id: Date.now().toString(), content, createdAt: Date.now() },
-            ...notes,
-          ];
+      const currentTime = Date.now();
+      let updatedNotes: Note[];
+
+      if (activeNoteId) {
+        const activeNoteIndex = notes.findIndex(
+          (note) => note.id === activeNoteId
+        );
+        const updatedNote = {
+          ...notes[activeNoteIndex],
+          content,
+          createdAt: currentTime,
+        };
+        updatedNotes = [
+          updatedNote,
+          ...notes.slice(0, activeNoteIndex),
+          ...notes.slice(activeNoteIndex + 1),
+        ];
+      } else {
+        // If creating a new note
+        const newNote = {
+          id: currentTime.toString(),
+          content,
+          createdAt: currentTime,
+        };
+        updatedNotes = [newNote, ...notes];
+      }
 
       setNotes(updatedNotes);
-      localStorage.setItem("notes", JSON.stringify(updatedNotes));
       setActiveNoteId(updatedNotes[0].id);
+      localStorage.setItem("notes", JSON.stringify(updatedNotes));
       toast.success("Note saved successfully");
     }
   };
@@ -86,6 +104,35 @@ const NoteEditor: React.FC = () => {
     if (newIndex >= 0 && newIndex < notes.length) {
       setActiveNoteId(notes[newIndex].id);
     }
+  };
+
+  const deleteActiveNote = () => {
+    if (!activeNoteId) return;
+
+    const activeIndex = notes.findIndex((note) => note.id === activeNoteId);
+    const updatedNotes = notes.filter((note) => note.id !== activeNoteId);
+
+    setNotes(updatedNotes);
+    localStorage.setItem("notes", JSON.stringify(updatedNotes));
+
+    // Set the new active note
+    if (updatedNotes.length > 0) {
+      // If there's a next note, make it active
+      if (activeIndex < updatedNotes.length) {
+        setActiveNoteId(updatedNotes[activeIndex].id);
+      } else {
+        // Otherwise, make the previous note active (or the last note if we deleted the last one)
+        setActiveNoteId(updatedNotes[updatedNotes.length - 1].id);
+      }
+    } else {
+      // If no notes left, clear the editor
+      setActiveNoteId(null);
+      if (editorRef.current) {
+        editorRef.current.innerHTML = "";
+      }
+    }
+
+    toast.success("Note deleted successfully");
   };
 
   // Handle formatting actions (bold, italic, underline, headings)
@@ -180,9 +227,9 @@ const NoteEditor: React.FC = () => {
           <div className="noteEditor__toolbar__flexFormat">
             <button
               onClick={() => formatText("formatBlock", "H1")}
-              style={{
-                backgroundColor: activeFormats.h1 ? "#007566" : "#031a0d",
-              }}
+              // style={{
+              //   backgroundColor: activeFormats.h1 ? "#007566" : "#031a0d",
+              // }}
               className="noteEditor__toolbar__flexFormat__button"
             >
               <p
@@ -196,9 +243,9 @@ const NoteEditor: React.FC = () => {
             </button>
             <button
               onClick={() => formatText("formatBlock", "H2")}
-              style={{
-                backgroundColor: activeFormats.h2 ? "#007566" : "#031a0d",
-              }}
+              // style={{
+              //   backgroundColor: activeFormats.h2 ? "#007566" : "#031a0d",
+              // }}
               className="noteEditor__toolbar__flexFormat__button"
             >
               <p
@@ -212,9 +259,9 @@ const NoteEditor: React.FC = () => {
             </button>
             <button
               onClick={() => formatText("formatBlock", "H3")}
-              style={{
-                backgroundColor: activeFormats.h3 ? "#007566" : "#031a0d",
-              }}
+              // style={{
+              //   backgroundColor: activeFormats.h3 ? "#007566" : "#031a0d",
+              // }}
               className="noteEditor__toolbar__flexFormat__button"
             >
               <p
@@ -228,10 +275,29 @@ const NoteEditor: React.FC = () => {
             </button>
 
             <button
+              onClick={() => formatText("underline")}
+              // style={{
+              //   backgroundColor: activeFormats.underline
+              //     ? "#007566"
+              //     : "#031a0d",
+              // }}
+              className="noteEditor__toolbar__flexFormat__button"
+            >
+              <p
+                className="noteEditor__toolbar__flexFormat__button__text"
+                style={{
+                  color: activeFormats.underline ? "#0effdf" : "#007566",
+                }}
+              >
+                U
+              </p>
+            </button>
+
+            <button
               onClick={() => formatText("bold")}
-              style={{
-                backgroundColor: activeFormats.bold ? "#007566" : "#031a0d",
-              }}
+              // style={{
+              //   backgroundColor: activeFormats.bold ? "#007566" : "#031a0d",
+              // }}
               className="noteEditor__toolbar__flexFormat__button"
             >
               <svg
@@ -259,9 +325,9 @@ const NoteEditor: React.FC = () => {
             </button>
             <button
               onClick={() => formatText("italic")}
-              style={{
-                backgroundColor: activeFormats.italic ? "#007566" : "#031a0d",
-              }}
+              // style={{
+              //   backgroundColor: activeFormats.italic ? "#007566" : "#031a0d",
+              // }}
               className="noteEditor__toolbar__flexFormat__button"
             >
               <svg
@@ -294,16 +360,6 @@ const NoteEditor: React.FC = () => {
                 />
               </svg>
             </button>
-
-            {/* <button
-            onClick={() => formatText("underline")}
-            style={{
-              ...buttonStyle,
-              backgroundColor: activeFormats.underline ? "#555" : "#444",
-            }}
-          >
-            Underline
-          </button> */}
           </div>
 
           <button
@@ -400,6 +456,72 @@ const NoteEditor: React.FC = () => {
               <path d="M11.1422 21L4.49219 14.35L6.15469 12.6875L11.1422 17.675L21.8464 6.97083L23.5089 8.63333L11.1422 21Z" />
             </svg>
           </button>
+
+          <Popover.Root>
+            <Popover.Trigger>
+              <button
+                onClick={() => {}}
+                className="noteEditor__toolbar__button noteEditor__toolbar__button--more"
+              >
+                <svg
+                  className="noteEditor__toolbar__button__icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M15.9965 12H16.0054"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M11.9945 12H12.0035"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M7.99451 12H8.00349"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </Popover.Trigger>
+            <Popover.Content>
+              <div
+                className="noteEditor__toolbar__popover"
+                onClick={deleteActiveNote}
+              >
+                <svg
+                  className="noteEditor__toolbar__popover__icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6H4V4H9V3H15V4H20V6H19V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM17 6H7V19H17V6ZM9 17H11V8H9V17ZM13 17H15V8H13V17Z"
+                    fill="#FE3A3A"
+                  />
+                </svg>
+                <p className="noteEditor__toolbar__popover__text">
+                  Delete file
+                </p>
+              </div>
+            </Popover.Content>
+          </Popover.Root>
         </div>
 
         {/* ContentEditable Div for the rich text editor */}
